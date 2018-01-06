@@ -1,0 +1,7 @@
+ <!DOCTYPE RCC>
+ <RCC version="1.0">
+ <qresource>
+ <file>SMTKPlugin/SMTKPluginLicense.txt</file>
+ <file>SMTKPlugin/SMTKPluginDescription.txt</file>
+ </qresource>
+ </RCC>
