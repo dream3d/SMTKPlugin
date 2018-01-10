@@ -81,12 +81,12 @@ void ExportMoabMesh::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
+  parameters.push_back(SIMPL_NEW_OUTPUT_FILE_FP("Output File", OutputFile, FilterParameter::Parameter, ExportMoabMesh, m_ExtensionsString, "Output"));
+
   {
     DataArraySelectionFilterParameter::RequirementType req = DataArraySelectionFilterParameter::CreateRequirement(SIMPL::TypeNames::Double, 1, AttributeMatrix::Type::Cell, IGeometry::Type::Image);
     parameters.push_back(SIMPL_NEW_DA_SELECTION_FP("Selected Array", SelectedArrayPath, FilterParameter::RequiredArray, ExportMoabMesh, req));
   }
-
-  parameters.push_back(SIMPL_NEW_OUTPUT_FILE_FP("Output File", OutputFile, FilterParameter::Parameter, ExportMoabMesh, m_ExtensionsString, "Output"));
 
   setFilterParameters(parameters);
 }
