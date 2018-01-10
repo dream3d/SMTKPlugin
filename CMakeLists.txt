@@ -39,6 +39,13 @@ find_package(Boost 1.64.0
              COMPONENTS ${required_boost_components} REQUIRED)
 
 # --------------------------------------------------------------------
+# Find HDF5 Headers/Libraries
+# HDF5 now comes with everything that is needed for CMake to load
+# up the targets (Exported) that it needs. We just need to find where
+# HDF5 is installed.
+include(${CMP_SOURCE_DIR}/ExtLib/HDF5Support.cmake)
+
+# --------------------------------------------------------------------
 # Look for Vtk 7.0 as we need it for the plugin GUI to be generated
 # These are the required component libraries
 set(VtkComponents
@@ -102,6 +109,9 @@ include(${${PLUGIN_NAME}_SOURCE_DIR}/FilterParameterWidgets/SourceList.cmake)
 #-----------------------------------------------------
 # Include any extra Widgets that this plugin needs
 include(${${PLUGIN_NAME}_SOURCE_DIR}/Widgets/SourceList.cmake)
+#-----------------------------------------------------
+# Include any Utilities that this plugin needs
+include(${${PLUGIN_NAME}_SOURCE_DIR}/Utilities/SourceList.cmake)
 # -- Include all the resources
 include(${${PLUGIN_NAME}_SOURCE_DIR}/Resources/SourceList.cmake)
 
@@ -219,6 +229,9 @@ set(${PLUGIN_NAME}_MODULE_SRCS
   ${${PLUGIN_NAME}_Widgets_Generated_MOC_SRCS}
   ${${PLUGIN_NAME}_Widgets_Generated_UI_HDRS}
   ${${PLUGIN_NAME}_GEN_HDRS}
+  # -- Add in the Utilities
+  ${${PLUGIN_NAME}_Utilities_HDRS}
+  ${${PLUGIN_NAME}_Utilities_SRCS}
   # -- Add in the miscellaneous resources (license, plugin info, ...)
   ${${PLUGIN_NAME}_Generated_RC_SRCS}
   # -- Add in our Generated Version Files

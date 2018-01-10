@@ -2,29 +2,29 @@
  * Your License or Copyright can go here
  */
 
-#ifndef _extractdream3dboundaries_h_
-#define _extractdream3dboundaries_h_
+#ifndef _exportmoabmesh_h_
+#define _exportmoabmesh_h_
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
 /**
- * @brief The ExtractDREAM3DBoundaries class. See [Filter documentation](@ref extractdream3dboundaries) for details.
+ * @brief The ExportMoabMesh class. See [Filter documentation](@ref ExportMoabMesh) for details.
  */
-class ExtractDREAM3DBoundaries : public AbstractFilter
+class ExportMoabMesh : public AbstractFilter
 {
   Q_OBJECT
 
   public:
-    SIMPL_SHARED_POINTERS(ExtractDREAM3DBoundaries)
-    SIMPL_STATIC_NEW_MACRO(ExtractDREAM3DBoundaries)
-    SIMPL_TYPE_MACRO_SUPER(ExtractDREAM3DBoundaries, AbstractFilter)
+    SIMPL_SHARED_POINTERS(ExportMoabMesh)
+    SIMPL_STATIC_NEW_MACRO(ExportMoabMesh)
+    SIMPL_TYPE_MACRO_SUPER(ExportMoabMesh, AbstractFilter)
 
-    virtual ~ExtractDREAM3DBoundaries();
+    virtual ~ExportMoabMesh();
 
-    SIMPL_FILTER_PARAMETER(QString, InputFile)
-    Q_PROPERTY(QString InputFile READ getInputFile WRITE setInputFile)
+    SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
+    Q_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
 
     SIMPL_FILTER_PARAMETER(QString, OutputFile)
     Q_PROPERTY(QString OutputFile READ getOutputFile WRITE setOutputFile)
@@ -107,7 +107,7 @@ class ExtractDREAM3DBoundaries : public AbstractFilter
     void preflightExecuted();
 
   protected:
-    ExtractDREAM3DBoundaries();
+    ExportMoabMesh();
 
     /**
     * @brief dataCheck Checks for the appropriate parameter values and availability of arrays
@@ -120,9 +120,13 @@ class ExtractDREAM3DBoundaries : public AbstractFilter
     void initialize();
 
   private:
+    DEFINE_DATAARRAY_VARIABLE(double, SelectedArray)
 
-    ExtractDREAM3DBoundaries(const ExtractDREAM3DBoundaries&); // Copy Constructor Not Implemented
-    void operator=(const ExtractDREAM3DBoundaries&); // Operator '=' Not Implemented
+    QStringList     m_AllowedExtensions;
+    QString         m_ExtensionsString;
+
+    ExportMoabMesh(const ExportMoabMesh&); // Copy Constructor Not Implemented
+    void operator=(const ExportMoabMesh&); // Operator '=' Not Implemented
 };
 
-#endif /* _ExtractDREAM3DBoundaries_H_ */
+#endif /* _exportmoabmesh_h_ */

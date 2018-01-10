@@ -20,12 +20,12 @@
 
 #include "SMTKPluginTestFileLocations.h"
 
-class ExtractDREAM3DBoundariesTest
+class ExportMoabMeshTest
 {
 
   public:
-    ExtractDREAM3DBoundariesTest() {}
-    virtual ~ExtractDREAM3DBoundariesTest() {}
+    ExportMoabMeshTest() {}
+    virtual ~ExportMoabMeshTest() {}
 
 
   // -----------------------------------------------------------------------------
@@ -34,8 +34,8 @@ class ExtractDREAM3DBoundariesTest
   void RemoveTestFiles()
   {
   #if REMOVE_TEST_FILES
-    QFile::remove(UnitTest::ExtractDREAM3DBoundariesTest::TestFile1);
-    QFile::remove(UnitTest::ExtractDREAM3DBoundariesTest::TestFile2);
+    QFile::remove(UnitTest::ExportMoabMeshTest::TestFile1);
+    QFile::remove(UnitTest::ExportMoabMeshTest::TestFile2);
   #endif
   }
 
@@ -44,8 +44,8 @@ class ExtractDREAM3DBoundariesTest
   // -----------------------------------------------------------------------------
   int TestFilterAvailability()
   {
-    // Now instantiate the ExtractDREAM3DBoundariesTest Filter from the FilterManager
-    QString filtName = "ExtractDREAM3DBoundaries";
+    // Now instantiate the ExportMoabMeshTest Filter from the FilterManager
+    QString filtName = "ExportMoabMesh";
     FilterManager* fm = FilterManager::Instance();
     IFilterFactory::Pointer filterFactory = fm->getFactoryForFilter(filtName);
     if (nullptr == filterFactory.get())
@@ -60,10 +60,10 @@ class ExtractDREAM3DBoundariesTest
   // -----------------------------------------------------------------------------
   //
   // -----------------------------------------------------------------------------
-  int TestExtractDREAM3DBoundariesTest()
+  int TestExportMoabMesh()
   {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   /* Please write ExtractDREAM3DBoundariesTest test code here.
+   /* Please write ExportMoabMesh test code here.
     *
     * Your IO test files are:
     * UnitTest::ExtractDREAM3DBoundariesTest::TestFile1
@@ -96,14 +96,14 @@ class ExtractDREAM3DBoundariesTest
 
     DREAM3D_REGISTER_TEST( TestFilterAvailability() );
 
-    DREAM3D_REGISTER_TEST( TestExtractDREAM3DBoundariesTest() )
+    DREAM3D_REGISTER_TEST( TestExportMoabMesh() )
 
     DREAM3D_REGISTER_TEST( RemoveTestFiles() )
   }
 
   private:
-    ExtractDREAM3DBoundariesTest(const ExtractDREAM3DBoundariesTest&); // Copy Constructor Not Implemented
-    void operator=(const ExtractDREAM3DBoundariesTest&); // Operator '=' Not Implemented
+    ExportMoabMeshTest(const ExportMoabMeshTest&); // Copy Constructor Not Implemented
+    void operator=(const ExportMoabMeshTest&); // Operator '=' Not Implemented
 
 
 };
