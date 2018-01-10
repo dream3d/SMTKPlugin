@@ -69,6 +69,7 @@ void ExportMoabMesh::initialize()
   m_AllowedExtensions.push_back("h5m");
   m_AllowedExtensions.push_back("mhdf");
   m_AllowedExtensions.push_back("vtk");
+  m_AllowedExtensions.push_back("vtu");
 
   m_ExtensionsString = m_AllowedExtensions.join(" *.");
   m_ExtensionsString.prepend("*.");
@@ -177,7 +178,7 @@ void ExportMoabMesh::execute()
 
   bool didWrite = false;
   QFileInfo outFi(m_OutputFile);
-  if (outFi.completeSuffix() == "vtk")
+  if (outFi.completeSuffix() == "vtk" || outFi.completeSuffix() == "vtu")
   {
     smtk::io::ExportMesh exporter;
     smtk::model::ManagerPtr manager = smtk::model::Manager::create();
