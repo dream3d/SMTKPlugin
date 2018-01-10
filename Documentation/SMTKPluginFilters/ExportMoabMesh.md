@@ -1,33 +1,33 @@
-ExtractDREAM3DBoundaries {#extractdream3dboundaries}
+ExportMoabMesh {#exportmoabmesh}
 =============
 
 ## Group (Subgroup) ##
 SMTKPlugin (SMTKPlugin)
 
 ## Description ##
-This **Filter** does the following...
+This **Filter** creates a mesh using MOAB from a selected attribute array and exports the mesh to either a VTK or HDF5 file.
+
+The filter supports the following file extensions:
+
+VTK Files - vtk, vtu
+
+HDF5 Files - h5m, mhdf
 
 ## Parameters ##
 | Name | Type | Description |
 |------|------|------|
-| Parameter Name | Parameter Type | Description of parameter... |
+| Output File | QString | The path to the output file that the filter will export the mesh to. |
 
 ## Required Geometry ##
-Required Geometry Type -or- Not Applicable
+Image
 
 ## Required Objects ##
 | Kind | Default Name | Type | Component Dimensions | Description |
 |------|--------------|-------------|---------|-----|
-| **Data Container** | Data Container Name | N/A | N/A | Description of object... |
-| **Attribute Matrix** | Attribute Matrix Name | Element/Feature/Ensemble/etc. | N/A | Description of object... |
-| **Element/Feature/Ensemble/etc. Attribute Array** | AttributeArray Name | int32_t/float/etc. | (1)/(3)/etc. | Description of object... |
+| Data Array | SelectedDataArray | double | (1) | The attribute array that MOAB will use to create the mesh. |
 
 ## Created Objects ##
-| Kind | Default Name | Type | Component Dimensions | Description |
-|------|--------------|-------------|---------|-----|
-| **Data Container** | Data Container Name | N/A | N/A | Description of object... |
-| **Attribute Matrix** | Attribute Matrix Name | Element/Feature/Ensemble/etc. | N/A | Description of object... |
-| **Element/Feature/Ensemble/etc. Attribute Array** | AttributeArray Name | int32_t/float/etc. | (1)/(3)/etc. | Description of object... |
+None.
 
 ## License & Copyright ##
 
