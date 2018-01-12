@@ -15,7 +15,8 @@ include(${CMP_SOURCE_DIR}/cmpCMakeMacros.cmake)
 #------------------------------------------------------------------------------
 # Set any additional include directories here
 
-set(TEST_TEMP_DIR ${${PLUGIN_NAME}Test_BINARY_DIR}/Test/Temp)
+set(TESTFILES_DIR ${${PLUGIN_NAME}Test_SOURCE_DIR}/TestFiles)
+set(TEST_TEMP_DIR ${${PLUGIN_NAME}Test_BINARY_DIR}/Temp)
 
 # Make sure the directory is created during CMake time
 file(MAKE_DIRECTORY ${TEST_TEMP_DIR})

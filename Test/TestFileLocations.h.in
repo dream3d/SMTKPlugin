@@ -23,8 +23,9 @@ namespace UnitTest
 
   namespace ExportMoabMeshTest
   {
-    const QString TestFile1("@TEST_TEMP_DIR@/TestFile1.txt");
-    const QString TestFile2("@TEST_TEMP_DIR@/TestFile2.txt");
+    const QString InputFile("@TESTFILES_DIR@/ExportMoabMeshInput.dream3d");
+    const QString VTKOutputFile("@TEST_TEMP_DIR@/ExportMoabMeshOutput.vtk");
+    const QString HDF5OutputFile("@TEST_TEMP_DIR@/ExportMoabMeshOutput.h5m");
   }
 @FILTER_NAMESPACE@
 }
