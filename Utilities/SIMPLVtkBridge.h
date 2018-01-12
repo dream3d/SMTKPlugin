@@ -72,11 +72,7 @@ class SIMPLVtkBridge
 public:
   virtual ~SIMPLVtkBridge();
 
-  static std::vector<VTK_PTR(vtkDataSet)> WrapDataContainerArrayAsVtkDatasets(DataContainerArray::Pointer dca);
-
   static VTK_PTR(vtkDataSet) WrapDataContainerAsVtkDataset(DataContainer::Pointer dc);
-
-  static VTK_PTR(vtkDataSet) WrapDataArraysAsVtkDataset(QList<IDataArray::Pointer> das);
 
   static VTK_PTR(vtkDataSet) WrapImageGeomAsVtkImageData(ImageGeom::Pointer image, Int32ArrayType::Pointer data);
 

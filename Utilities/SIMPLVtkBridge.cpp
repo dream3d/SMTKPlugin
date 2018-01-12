@@ -86,33 +86,6 @@ SIMPLVtkBridge::~SIMPLVtkBridge()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-std::vector<VTK_PTR(vtkDataSet)> SIMPLVtkBridge::WrapDataContainerArrayAsVtkDatasets(DataContainerArray::Pointer dca)
-{
-  std::vector<VTK_PTR(vtkDataSet)> dataSets;
-
-  if(!dca)
-  {
-    return dataSets;
-  }
-
-  QList<DataContainer::Pointer> dcs = dca->getDataContainers();
-
-  for(QList<DataContainer::Pointer>::Iterator dc = dcs.begin(); dc != dcs.end(); ++dc)
-  {
-    VTK_PTR(vtkDataSet) dataSet = WrapDataContainerAsVtkDataset((*dc));
-
-    if(dataSet)
-    {
-      dataSets.push_back(dataSet);
-    }
-  }
-
-  return dataSets;
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
 VTK_PTR(vtkDataSet) SIMPLVtkBridge::WrapDataContainerAsVtkDataset(DataContainer::Pointer dc)
 {
   VTK_PTR(vtkDataSet) dataSet;
@@ -198,14 +171,6 @@ VTK_PTR(vtkDataSet) SIMPLVtkBridge::WrapDataContainerAsVtkDataset(DataContainer:
   }
 
   return dataSet;
-}
-
-// -----------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------
-VTK_PTR(vtkDataSet) SIMPLVtkBridge::WrapDataArraysAsVtkDataset(QList<IDataArray::Pointer> das)
-{
-
 }
 
 // -----------------------------------------------------------------------------
