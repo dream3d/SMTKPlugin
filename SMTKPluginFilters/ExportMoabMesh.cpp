@@ -128,6 +128,11 @@ void ExportMoabMesh::dataCheck()
 
   QVector<size_t> cDims = { 1 };
   m_SelectedArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DoubleArrayType, AbstractFilter>(this, getSelectedArrayPath(), cDims);
+  if (getErrorCondition() < 0)
+  {
+    return;
+  }
+
   if(nullptr != m_SelectedArrayPtr.lock().get())                                                                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   {
     m_SelectedArray = m_SelectedArrayPtr.lock()->getPointer(0);

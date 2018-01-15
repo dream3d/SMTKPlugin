@@ -41,6 +41,7 @@
 #include "SIMPLib/Plugin/SIMPLibPluginLoader.h"
 #include "SIMPLib/Geometry/ImageGeom.h"
 #include "SIMPLib/Filtering/QMetaObjectUtilities.h"
+#include "SIMPLib/CoreFilters/DataContainerReader.h"
 
 #include "H5Support/QH5Lite.h"
 #include "H5Support/QH5Utilities.h"
@@ -84,20 +85,11 @@ class ExportMoabMeshTest
     // Now instantiate the ExportMoabMeshTest Filter from the FilterManager
     QString filtName = "ExportMoabMesh";
     FilterManager* fm = FilterManager::Instance();
-    IFilterFactory::Pointer filterFactory = fm->getFactoryForFilter(filtName);
+    IFilterFactory::Pointer filterFactory = fm->getFactoryFromClassName(filtName);
     if (nullptr == filterFactory.get())
     {
       std::stringstream ss;
       ss << "The SMTKPlugin Requires the use of the " << filtName.toStdString() << " filter which is found in the SMTKPlugin Plugin";
-      DREAM3D_TEST_THROW_EXCEPTION(ss.str())
-    }
-
-    filtName = "DataContainerReader";
-    filterFactory = fm->getFactoryForFilter(filtName);
-    if (nullptr == filterFactory.get())
-    {
-      std::stringstream ss;
-      ss << "The SMTKPlugin Requires the use of the " << filtName.toStdString() << " filter which is found in Core Filters";
       DREAM3D_TEST_THROW_EXCEPTION(ss.str())
     }
 
@@ -111,31 +103,15 @@ class ExportMoabMeshTest
   {
     FilterPipeline::Pointer pipeline = FilterPipeline::New();
 
+    DataContainerReader::Pointer dcReaderFilter = DataContainerReader::New();
+    dcReaderFilter->setInputFile(UnitTest::ExportMoabMeshTest::InputFile);
+    DataContainerArrayProxy proxy = dcReaderFilter->readDataContainerArrayStructure(UnitTest::ExportMoabMeshTest::InputFile);
+    dcReaderFilter->setInputFileDataContainerArrayProxy(proxy);
+    pipeline->pushBack(dcReaderFilter);
+
     QString filtName = "ExportMoabMesh";
     FilterManager* fm = FilterManager::Instance();
-    IFilterFactory::Pointer filterFactory = fm->getFactoryForFilter(filtName);
-
-    if (nullptr != filterFactory.get())
-    {
-      AbstractFilter::Pointer filter = filterFactory->create();
-      bool propWasSet;
-      QVariant var;
-
-      var.setValue(UnitTest::ExportMoabMeshTest::InputFile);
-      propWasSet = filter->setProperty("InputFile", var);
-      DREAM3D_REQUIRE_EQUAL(propWasSet, true);
-
-      pipeline->pushBack(filter);
-    }
-    else
-    {
-      QString ss = QObject::tr("ExportMoabMeshTest Error creating filter '%1'. Filter was not created/executed. Please notify the developers.").arg(filtName);
-      DREAM3D_REQUIRE_EQUAL(0, 1);
-    }
-
-    filtName = "ExportMoabMesh";
-    filterFactory = fm->getFactoryForFilter(filtName);
-
+    IFilterFactory::Pointer filterFactory = fm->getFactoryFromClassName(filtName);
     if (nullptr != filterFactory.get())
     {
       AbstractFilter::Pointer filter = filterFactory->create();
@@ -187,24 +163,32 @@ class ExportMoabMeshTest
       DREAM3D_REQUIRE(tsttId >= 0);
       sentinel.addGroupId(&tsttId);
 
-      hid_t elementsId = QH5Utilities::openHDF5Object(fileId, "elements");
+      hid_t elementsId = QH5Utilities::openHDF5Object(tsttId, "elements");
       DREAM3D_REQUIRE(elementsId >= 0);
       sentinel.addGroupId(&elementsId);
 
-      hid_t hex8Id = QH5Utilities::openHDF5Object(fileId, "Hex8");
+      hid_t hex8Id = QH5Utilities::openHDF5Object(elementsId, "Hex8");
       DREAM3D_REQUIRE(hex8Id >= 0);
       sentinel.addGroupId(&hex8Id);
 
-      hid_t tagsId = QH5Utilities::openHDF5Object(fileId, "tags");
+      hid_t tagsId = QH5Utilities::openHDF5Object(hex8Id, "tags");
       DREAM3D_REQUIRE(tagsId >= 0);
       sentinel.addGroupId(&tagsId);
 
-      double* meshDataset = nullptr;
-      QH5Lite::readScalarDataset(tagsId, DataArrayName + "_", meshDataset);
+      bool exists = QH5Lite::datasetExists(tagsId, DataArrayName + "_");
+      DREAM3D_REQUIRE_EQUAL(exists, true);
+
+      QVector<hsize_t> dims;
+      H5T_class_t classType;
+      size_t sizeType;
+      herr_t infoId = QH5Lite::getDatasetInfo(tagsId, DataArrayName + "_", dims, classType, sizeType);
+      DREAM3D_REQUIRE(infoId >= 0);
+      DREAM3D_REQUIRE_EQUAL(dims.size(), 1);
     }
     else
     {
-      QString ss = QObject::tr("ExportMoabMeshTest Error creating filter '%1'. Filter was not created/executed. Please notify the developers.").arg(filtName);
+      std::stringstream ss;
+      ss << QObject::tr("ExportMoabMeshTest Error creating filter '%1'. Filter was not created/executed. Please notify the developers.").arg(filtName).toStdString();
       DREAM3D_REQUIRE_EQUAL(0, 1)
     }
 
