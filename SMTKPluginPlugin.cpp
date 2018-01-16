@@ -43,10 +43,27 @@ SMTKPluginPlugin::~SMTKPluginPlugin()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-QString SMTKPluginPlugin::getPluginName()
+QString SMTKPluginPlugin::getPluginFileName()
 {
-  return (SMTKPluginConstants::SMTKPluginPluginDisplayName);
+  return SMTKPluginConstants::SMTKPluginPluginFile;
 }
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString SMTKPluginPlugin::getPluginDisplayName()
+{
+  return SMTKPluginConstants::SMTKPluginPluginDisplayName;
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString SMTKPluginPlugin::getPluginBaseName()
+{
+  return SMTKPluginConstants::SMTKPluginBaseName;
+}
+
 
 // -----------------------------------------------------------------------------
 //
