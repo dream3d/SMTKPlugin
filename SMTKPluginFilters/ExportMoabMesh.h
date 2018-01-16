@@ -90,6 +90,12 @@ class ExportMoabMesh : public AbstractFilter
     virtual const QString getSubGroupName() override;
 
     /**
+     * @brief getUuid Return the unique identifier for this filter.
+     * @return A QUuid object.
+     */
+    virtual const QUuid getUuid() override;
+
+    /**
      * @brief getHumanLabel Reimplemented from @see AbstractFilter class
      */
     virtual const QString getHumanLabel() override;
