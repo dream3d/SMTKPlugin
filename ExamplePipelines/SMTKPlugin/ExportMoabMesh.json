@@ -19,7 +19,7 @@
                     22.013751983642578,
                     32.01375198364258
                 ],
-                "BoundaryArea": 0,
+                "BoundaryArea": 1.401298464324817e-45,
                 "Crystal Symmetry": 1,
                 "FeatureSize Distribution": {
                     "Average": 2.299999952316284,
@@ -334,7 +334,7 @@
         "UseGoodVoxels": 0
     },
     "7": {
-        "FilterVersion": "1.0.281",
+        "FilterVersion": "1.0.284",
         "Filter_Enabled": true,
         "Filter_Human_Label": "Convert AttributeArray Data Type",
         "Filter_Name": "ConvertData",
@@ -353,7 +353,7 @@
         "Filter_Human_Label": "Export MOAB Mesh",
         "Filter_Name": "ExportMoabMesh",
         "Filter_Uuid": "{724fcea9-b0cf-5077-828a-f3cbc297e49e}",
-        "OutputFile": "Data/Output/MoabMesh.h5m",
+        "OutputFile": "Data/Output/SMTKPlugin/MoabMesh.h5m",
         "SelectedArrayPath": {
             "Attribute Matrix Name": "CellData",
             "Data Array Name": "FeatureIdsDoubles",
@@ -361,17 +361,17 @@
         }
     },
     "9": {
-        "FilterVersion": "1.0.281",
+        "FilterVersion": "1.0.284",
         "Filter_Enabled": true,
         "Filter_Human_Label": "Write DREAM.3D Data File",
         "Filter_Name": "DataContainerWriter",
         "Filter_Uuid": "{3fcd4c43-9d75-5b86-aad4-4441bc914f37}",
-        "OutputFile": "Data/Output/CubicSingleEquiaxedOut.dream3d",
+        "OutputFile": "Data/Output/SMTKPlugin/CubicSingleEquiaxedOut.dream3d",
         "WriteTimeSeries": 0,
         "WriteXdmfFile": 1
     },
     "PipelineBuilder": {
-        "Name": "Export Moab Mesh",
+        "Name": "ExportMoabMesh",
         "Number_Filters": 10,
         "Version": 6
     }

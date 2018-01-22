@@ -30,6 +30,7 @@
 
 #include "ExportMoabMesh.h"
 
+#include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 
 #include "SIMPLib/Common/Constants.h"
@@ -126,6 +127,28 @@ void ExportMoabMesh::dataCheck()
   setErrorCondition(0);
   setWarningCondition(0);
 
+  if(getOutputFile().isEmpty() == true)
+  {
+    QString ss = QObject::tr("The output file must be set");
+    setErrorCondition(-101000);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+  }
+
+  QFileInfo fi(getOutputFile());
+
+  QDir parentPath = fi.path();
+  if(parentPath.exists() == false)
+  {
+    setWarningCondition(-101001);
+    QString ss = QObject::tr("The directory path for the output file does not exist. DREAM.3D will attempt to create this path during execution of the filter");
+    notifyWarningMessage(getHumanLabel(), ss, getWarningCondition());
+  }
+
+  if(fi.suffix().compare("") == 0)
+  {
+    setOutputFile(getOutputFile().append(".h5m"));
+  }
+
   QVector<size_t> cDims = { 1 };
   m_SelectedArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DoubleArrayType, AbstractFilter>(this, getSelectedArrayPath(), cDims);
   if (getErrorCondition() < 0)
@@ -138,22 +161,7 @@ void ExportMoabMesh::dataCheck()
     m_SelectedArray = m_SelectedArrayPtr.lock()->getPointer(0);
   } /* Now assign the raw pointer to data from the DataArray<T> object */
 
-  QFileInfo outFi(m_OutputFile);
 
-  if (m_OutputFile.isEmpty())
-  {
-    QString ss = QObject::tr("The output file path is empty.  Please enter a valid output file path (%1).").arg(m_ExtensionsString);
-    setErrorCondition(-20000);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
-  else if (m_AllowedExtensions.contains(outFi.completeSuffix()) == false)
-  {
-    QString ss = QObject::tr("The output file does not have a valid file extension.  Please enter a valid output file path (%1).").arg(m_ExtensionsString);
-    setErrorCondition(-20001);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
 }
 
 // -----------------------------------------------------------------------------
@@ -179,6 +187,20 @@ void ExportMoabMesh::execute()
   dataCheck();
   if(getErrorCondition() < 0) { return; }
 
+  // Make sure any directory path is also available as the user may have just typed
+  // in a path without actually creating the full path
+  QFileInfo fi(getOutputFile());
+
+  QDir dir(fi.path());
+  if(!dir.mkpath("."))
+  {
+    QString ss;
+    ss = QObject::tr("Error creating parent path '%1'").arg(dir.path());
+    setErrorCondition(-101002);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    return;
+  }
+
   DataContainer::Pointer dc = getDataContainerArray()->getDataContainer(getSelectedArrayPath());
 
   VTK_PTR(vtkDataSet) imageDataPtr = SIMPLVtkBridge::WrapDataContainerAsVtkDataset(dc);
@@ -202,7 +224,7 @@ void ExportMoabMesh::execute()
   if (!collection)
   {
     QString ss = QObject::tr("Unable to import the selected data array into an SMTK collection.");
-    setErrorCondition(-20003);
+    setErrorCondition(-101003);
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
@@ -224,7 +246,7 @@ void ExportMoabMesh::execute()
   if (didWrite == false)
   {
     QString ss = QObject::tr("Unable to write MOAB mesh to the specified file.");
-    setErrorCondition(-20004);
+    setErrorCondition(-101004);
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
@@ -249,7 +271,9 @@ AbstractFilter::Pointer ExportMoabMesh::newFilterInstance(bool copyFilterParamet
 //
 // -----------------------------------------------------------------------------
 const QString ExportMoabMesh::getCompiledLibraryName()
-{ return SMTKPluginConstants::SMTKPluginBaseName; }
+{
+  return SMTKPluginConstants::SMTKPluginBaseName;
+}
 
 // -----------------------------------------------------------------------------
 //
@@ -274,7 +298,9 @@ const QString ExportMoabMesh::getFilterVersion()
 //
 // -----------------------------------------------------------------------------
 const QString ExportMoabMesh::getGroupName()
-{ return SIMPL::FilterGroups::IOFilters; }
+{
+  return SIMPL::FilterGroups::IOFilters;
+}
 
 // -----------------------------------------------------------------------------
 //
@@ -288,11 +314,14 @@ const QUuid ExportMoabMesh::getUuid()
 //
 // -----------------------------------------------------------------------------
 const QString ExportMoabMesh::getSubGroupName()
-{ return "SMTKPlugin"; }
+{
+  return "SMTKPlugin";
+}
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
 const QString ExportMoabMesh::getHumanLabel()
-{ return "Export MOAB Mesh"; }
-
+{
+  return "Export MOAB Mesh";
+}
