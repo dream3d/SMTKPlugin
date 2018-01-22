@@ -35,8 +35,7 @@ else()
   list(APPEND required_boost_components regex)
 endif()
 
-find_package(Boost 1.64.0
-             COMPONENTS ${required_boost_components} REQUIRED)
+find_package(Boost 1.66.0 COMPONENTS ${required_boost_components} REQUIRED)
 
 # --------------------------------------------------------------------
 # Find HDF5 Headers/Libraries
