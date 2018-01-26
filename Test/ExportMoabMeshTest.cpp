@@ -45,7 +45,7 @@
 
 #include "H5Support/QH5Lite.h"
 #include "H5Support/QH5Utilities.h"
-#include "H5Support/HDF5ScopedFileSentinel.h"
+#include "H5Support/H5ScopedSentinel.h"
 
 #include "SMTKPlugin/SMTKPluginFilters/ExportMoabMesh.h"
 
@@ -157,7 +157,7 @@ class ExportMoabMeshTest
 
       hid_t fileId = QH5Utilities::openFile(UnitTest::ExportMoabMeshTest::HDF5OutputFile, true);
       DREAM3D_REQUIRE(fileId >= 0);
-      HDF5ScopedFileSentinel sentinel(&fileId, true);
+      H5ScopedFileSentinel sentinel(&fileId, true);
 
       hid_t tsttId = QH5Utilities::openHDF5Object(fileId, "tstt");
       DREAM3D_REQUIRE(tsttId >= 0);
