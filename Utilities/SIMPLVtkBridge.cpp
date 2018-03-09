@@ -311,7 +311,7 @@ VTK_PTR(vtkDataSet) SIMPLVtkBridge::WrapGeometry(ImageGeom::Pointer image)
   float res[3] = {0.0f, 0.0f, 0.0f};
   float origin[3] = {0.0f, 0.0f, 0.0f};
 
-  image->getDimensions(dims);
+  std::tie(dims[0], dims[1], dims[2]) = image->getDimensions();
   image->getResolution(res);
   image->getOrigin(origin);
 
@@ -422,7 +422,7 @@ VTK_PTR(vtkDataSet) SIMPLVtkBridge::WrapImageGeomAsVtkImageData(ImageGeom::Point
   float res[3] = {0.0f, 0.0f, 0.0f};
   float origin[3] = {0.0f, 0.0f, 0.0f};
 
-  image->getDimensions(dims);
+  std::tie(dims[0], dims[1], dims[2]) = image->getDimensions();
   image->getResolution(res);
   image->getOrigin(origin);
 
