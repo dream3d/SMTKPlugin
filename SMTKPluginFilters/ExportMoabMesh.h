@@ -44,10 +44,10 @@ class ExportMoabMesh : public AbstractFilter
 
   public:
     SIMPL_SHARED_POINTERS(ExportMoabMesh)
-    SIMPL_STATIC_NEW_MACRO(ExportMoabMesh)
+    SIMPL_FILTER_NEW_MACRO(ExportMoabMesh)
     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ExportMoabMesh, AbstractFilter)
 
-    virtual ~ExportMoabMesh();
+    ~ExportMoabMesh() override;
 
     SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
     Q_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)

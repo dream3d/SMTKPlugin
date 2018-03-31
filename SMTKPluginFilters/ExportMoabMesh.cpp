@@ -74,7 +74,6 @@ ExportMoabMesh::ExportMoabMesh() :
   AbstractFilter()
 {
   initialize();
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
