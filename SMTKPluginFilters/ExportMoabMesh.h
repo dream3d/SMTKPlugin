@@ -158,7 +158,8 @@ class ExportMoabMesh : public AbstractFilter
     QString         m_ExtensionsString;
 
     ExportMoabMesh(const ExportMoabMesh&); // Copy Constructor Not Implemented
-    void operator=(const ExportMoabMesh&); // Move assignment Not Implemented
+    ExportMoabMesh& operator=(const ExportMoabMesh&) = delete; // Copy Assignment Not Implemented
+    ExportMoabMesh& operator=(ExportMoabMesh&&) = delete;      // Move Assignment Not Implemented
 };
 
 #endif /* _exportmoabmesh_h_ */
