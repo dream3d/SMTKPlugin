@@ -74,15 +74,12 @@ ExportMoabMesh::ExportMoabMesh() :
   AbstractFilter()
 {
   initialize();
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-ExportMoabMesh::~ExportMoabMesh()
-{
-}
+ExportMoabMesh::~ExportMoabMesh() = default;
 
 // -----------------------------------------------------------------------------
 //
@@ -156,7 +153,7 @@ void ExportMoabMesh::dataCheck()
     return;
   }
 
-  if(nullptr != m_SelectedArrayPtr.lock().get())                                                                   /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
+  if(nullptr != m_SelectedArrayPtr.lock()) /* Validate the Weak Pointer wraps a non-nullptr pointer to a DataArray<T> object */
   {
     m_SelectedArray = m_SelectedArrayPtr.lock()->getPointer(0);
   } /* Now assign the raw pointer to data from the DataArray<T> object */

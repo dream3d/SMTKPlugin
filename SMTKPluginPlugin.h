@@ -157,7 +157,7 @@ class SMTKPluginPlugin : public QObject, public ISIMPLibPlugin
     bool                m_DidLoad;
 
     SMTKPluginPlugin(const SMTKPluginPlugin&); // Copy Constructor Not Implemented
-    void operator=(const SMTKPluginPlugin&); // Operator '=' Not Implemented
+    void operator=(const SMTKPluginPlugin&);   // Move assignment Not Implemented
 };
 
 #endif /* _SMTKPlugin_H_ */

@@ -211,8 +211,6 @@ class ExportMoabMeshTest
 
   private:
     ExportMoabMeshTest(const ExportMoabMeshTest&); // Copy Constructor Not Implemented
-    void operator=(const ExportMoabMeshTest&); // Operator '=' Not Implemented
-
-
+    void operator=(const ExportMoabMeshTest&);     // Move assignment Not Implemented
 };
 
