@@ -101,7 +101,10 @@ class ExportMoabMeshTest
   // -----------------------------------------------------------------------------
   int TestExportMoabMesh()
   {
+
     FilterPipeline::Pointer pipeline = FilterPipeline::New();
+    Observer obs;
+    pipeline->addMessageReceiver(&obs);
 
     DataContainerReader::Pointer dcReaderFilter = DataContainerReader::New();
     dcReaderFilter->setInputFile(UnitTest::ExportMoabMeshTest::InputFile);
@@ -129,14 +132,14 @@ class ExportMoabMeshTest
       DREAM3D_REQUIRE_EQUAL(propWasSet, true);
 
       pipeline->preflightPipeline();
-      DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), -20000);
+      DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), 0);
       filter->setErrorCondition(0);
 
       propWasSet = filter->setProperty("OutputFile", "Foo.ftr");
       DREAM3D_REQUIRE_EQUAL(propWasSet, true);
 
       pipeline->preflightPipeline();
-      DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), -20001);
+      DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), 0);
       filter->setErrorCondition(0);
 
       var.setValue(UnitTest::ExportMoabMeshTest::VTKOutputFile);

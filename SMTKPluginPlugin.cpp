@@ -225,7 +225,11 @@ void SMTKPluginPlugin::readSettings(QSettings& prefs)
 {
 }
 
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+void SMTKPluginPlugin::registerFilterWidgets(FilterWidgetManager* fwm)
+{
+}
+
 #include "SMTKPluginFilters/RegisterKnownFilters.cpp"
-
-#include "FilterParameterWidgets/RegisterKnownFilterParameterWidgets.cpp"
-
