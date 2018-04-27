@@ -10,10 +10,13 @@
 
 #include "SIMPLib/Plugin/ISIMPLibPlugin.h"
 
+#include "SMTKPlugin/SMTKPluginDLLExport.h"
+
 /**
  * @brief The SMTKPluginPlugin class
  */
-class SMTKPluginPlugin : public QObject, public ISIMPLibPlugin
+class SMTKPlugin_EXPORT SMTKPluginPlugin : public QObject, public ISIMPLibPlugin
+
 {
     Q_OBJECT
     Q_INTERFACES(ISIMPLibPlugin)

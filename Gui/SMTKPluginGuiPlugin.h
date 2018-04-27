@@ -10,7 +10,13 @@ class SMTKPluginGuiPlugin : public SMTKPluginPlugin
 
 public:
   SMTKPluginGuiPlugin();
-  ~SMTKPluginGuiPlugin() override;
+   ~SMTKPluginGuiPlugin() override;
+  
+  /**
+   * @brief Register all the filters with the FilterWidgetFactory
+   */
+  void registerFilterWidgets(FilterWidgetManager* fwm) override;
+  
 
 public:
   SMTKPluginGuiPlugin(const SMTKPluginGuiPlugin&) = delete;            // Copy Constructor Not Implemented
