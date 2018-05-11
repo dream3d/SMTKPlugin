@@ -35,10 +35,12 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
+#include "SMTKPlugin/SMTKPluginDLLExport.h"
+
 /**
  * @brief The ExportMoabMesh class. See [Filter documentation](@ref ExportMoabMesh) for details.
  */
-class ExportMoabMesh : public AbstractFilter
+class SMTKPlugin_EXPORT ExportMoabMesh : public AbstractFilter
 {
   Q_OBJECT
   PYB11_CREATE_BINDINGS(ExportMoabMesh SUPERCLASS AbstractFilter)
