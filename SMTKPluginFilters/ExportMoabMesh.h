@@ -28,8 +28,7 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _exportmoabmesh_h_
-#define _exportmoabmesh_h_
+#pragma once
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -167,4 +166,3 @@ private:
   ExportMoabMesh& operator=(ExportMoabMesh&&) = delete;      // Move Assignment Not Implemented
 };
 
-#endif /* _exportmoabmesh_h_ */

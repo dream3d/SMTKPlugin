@@ -33,8 +33,7 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _vtkquadgeom_h_
-#define _vtkquadgeom_h_
+#pragma once
 
 #include <vtkMappedUnstructuredGrid.h>
 #include <vtkIdTypeArray.h>
@@ -160,4 +159,3 @@ private:
 
 vtkMakeMappedUnstructuredGrid(VtkQuadGrid, VtkQuadGeom)
 
-#endif

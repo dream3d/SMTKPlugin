@@ -33,8 +33,7 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _simplvtkbridge_h_
-#define _simplvtkbridge_h_
+#pragma once
 
 #ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Winconsistent-missing-override"
@@ -123,4 +122,3 @@ private:
 #pragma clang diagnostic pop
 #endif
 
-#endif /* _simplvtkbridge_h_ */

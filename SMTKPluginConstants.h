@@ -1,8 +1,7 @@
 /*
  * Your License should go here
  */
-#ifndef _smtkpluginconstants_h_
-#define _smtkpluginconstants_h_
+#pragma once
 
 #include <QtCore/QString>
 
@@ -29,4 +28,3 @@ namespace FilterParameterWidgetType
 {
 /* const QString SomeCustomWidget("SomeCustomWidget"); */
 }
-#endif

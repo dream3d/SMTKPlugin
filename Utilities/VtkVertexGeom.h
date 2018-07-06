@@ -33,8 +33,7 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _vtkvertexgeom_h_
-#define _vtkvertexgeom_h_
+#pragma once
 
 #include <vtkMappedUnstructuredGrid.h>
 #include <vtkIdTypeArray.h>
@@ -160,4 +159,3 @@ private:
 
 vtkMakeMappedUnstructuredGrid(VtkVertexGrid, VtkVertexGeom)
 
-#endif

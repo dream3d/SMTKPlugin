@@ -2,8 +2,7 @@
  * Your License or Copyright can go here
  */
 
-#ifndef _smtkpluginplugin_h_
-#define _smtkpluginplugin_h_
+#pragma once
 
 #include <QtCore/QObject>
 #include <QtCore/QSettings>
@@ -163,4 +162,3 @@ class SMTKPlugin_EXPORT SMTKPluginPlugin : public QObject, public ISIMPLibPlugin
     void operator=(const SMTKPluginPlugin&);   // Move assignment Not Implemented
 };
 
-#endif /* _SMTKPlugin_H_ */
