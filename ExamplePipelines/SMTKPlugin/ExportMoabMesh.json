@@ -170,7 +170,7 @@
         "Filter_Human_Label": "Pack Primary Phases",
         "Filter_Name": "PackPrimaryPhases",
         "Filter_Uuid": "{84305312-0d10-50ca-b89a-fda17a353cc9}",
-        "HaveFeatures": 0,
+        "FeatureGeneration": 0,
         "InputPhaseNamesArrayPath": {
             "Attribute Matrix Name": "CellEnsembleData",
             "Data Array Name": "PhaseName",
