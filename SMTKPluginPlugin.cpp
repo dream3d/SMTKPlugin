@@ -7,9 +7,9 @@
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 
+#include "SIMPLib/Filtering/FilterFactory.hpp"
 #include "SIMPLib/Filtering/FilterManager.h"
 #include "SIMPLib/Filtering/IFilterFactory.hpp"
-#include "SIMPLib/Filtering/FilterFactory.hpp"
 
 #include "SMTKPlugin/SMTKPluginConstants.h"
 
@@ -19,18 +19,23 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-SMTKPluginPlugin::SMTKPluginPlugin() :
-m_Version("0.1.0"),                            // Initialize SMTKPlugin's Version Number Here
-m_CompatibilityVersion("0.1.0"), // Initialize SMTKPlugin's Compatibility Version Number Here
-m_Vendor("Vendor Name"),                                // Initialize SMTKPlugin's Vendor Name Here
-m_URL("URL"),                                           // Initialize Company URL Here
-m_Location("Location"),                                 // Initialize SMTKPlugin library Location Here
-m_Description("Description"),                           // Initialize SMTKPlugin's Description Here
-m_Copyright("Copyright"),                               // Initialize SMTKPlugin's Copyright Here
-m_Filters(QList<QString>()),                        // Initialize SMTKPlugin's List of Dependencies Here
-m_DidLoad(false)
+SMTKPluginPlugin::SMTKPluginPlugin()
+: m_Version(SMTKPlugin::Version::Package())
+, m_CompatibilityVersion(SMTKPlugin::Version::Package())
+, m_Vendor("Open-Source")
+, // Initialize SMTKPlugin's Vendor Name Here
+    m_URL("http://www.github.com/bluequartzsoftware/SMTKPlugin")
+, // Initialize Company URL Here
+    m_Location("")
+, // Initialize SMTKPlugin library Location Here
+    m_Description("")
+, // Initialize SMTKPlugin's Description Here
+    m_Copyright("")
+, // Initialize SMTKPlugin's Copyright Here
+    m_Filters(QList<QString>())
+, // Initialize SMTKPlugin's List of Dependencies Here
+    m_DidLoad(false)
 {
-
 }
 
 // -----------------------------------------------------------------------------
@@ -61,7 +66,6 @@ QString SMTKPluginPlugin::getPluginBaseName()
 {
   return SMTKPluginConstants::SMTKPluginBaseName;
 }
-
 
 // -----------------------------------------------------------------------------
 //
@@ -115,9 +119,9 @@ QString SMTKPluginPlugin::getDescription()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--Description was not read-->>";
 
-  if ( licenseFileInfo.exists() )
+  if(licenseFileInfo.exists())
   {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -146,9 +150,9 @@ QString SMTKPluginPlugin::getLicense()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--License was not read-->>";
 
-  if ( licenseFileInfo.exists() )
+  if(licenseFileInfo.exists())
   {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -169,14 +173,14 @@ QMap<QString, QString> SMTKPluginPlugin::getThirdPartyLicenses()
   fileStrList.push_back(":/ThirdParty/Qt.txt");
   fileStrList.push_back(":/ThirdParty/Qwt.txt");
 
-  for (QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
+  for(QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
   {
     QFile file(*iter);
     QFileInfo licenseFileInfo(file);
 
-    if ( licenseFileInfo.exists() )
+    if(licenseFileInfo.exists())
     {
-      if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+      if(file.open(QIODevice::ReadOnly | QIODevice::Text))
       {
         QTextStream in(&file);
         licenseMap.insert(licenseFileInfo.baseName(), in.readAll());
