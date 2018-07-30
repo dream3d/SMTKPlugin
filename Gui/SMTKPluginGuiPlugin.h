@@ -20,7 +20,7 @@ public:
 
 public:
   SMTKPluginGuiPlugin(const SMTKPluginGuiPlugin&) = delete;            // Copy Constructor Not Implemented
-  SMTKPluginGuiPlugin(SMTKPluginGuiPlugin&&) = delete;                 // Move Constructor
+  SMTKPluginGuiPlugin(SMTKPluginGuiPlugin&&) = delete;                 // Move Constructor Not Implemented
   SMTKPluginGuiPlugin& operator=(const SMTKPluginGuiPlugin&) = delete; // Copy Assignment Not Implemented
   SMTKPluginGuiPlugin& operator=(SMTKPluginGuiPlugin&&) = delete;      // Move Assignment Not Implemented
 };
