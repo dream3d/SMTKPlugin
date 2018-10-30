@@ -36,6 +36,7 @@
 #include "SIMPLib/Common/Constants.h"
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/OutputFileFilterParameter.h"
+#include "SIMPLib/Utilities/FileSystemPathHelper.h"
 
 #include "smtk/extension/vtk/io/mesh/ExportVTKData.h"
 #include "smtk/extension/vtk/io/mesh/ImportVTKData.h"
@@ -123,27 +124,12 @@ void ExportMoabMesh::dataCheck()
   setErrorCondition(0);
   setWarningCondition(0);
 
-  if(getOutputFile().isEmpty() == true)
-  {
-    QString ss = QObject::tr("The output file must be set");
-    setErrorCondition(-101000);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-  }
-
   QFileInfo fi(getOutputFile());
-
-  QDir parentPath = fi.path();
-  if(parentPath.exists() == false)
-  {
-    setWarningCondition(-101001);
-    QString ss = QObject::tr("The directory path for the output file does not exist. DREAM.3D will attempt to create this path during execution of the filter");
-    notifyWarningMessage(getHumanLabel(), ss, getWarningCondition());
-  }
-
   if(fi.suffix().compare("") == 0)
   {
     setOutputFile(getOutputFile().append(".h5m"));
   }
+  FileSystemPathHelper::CheckOutputFile(this, "Output File Path", getOutputFile(), true);
 
   QVector<size_t> cDims = { 1 };
   m_SelectedArrayPtr = getDataContainerArray()->getPrereqArrayFromPath<DoubleArrayType, AbstractFilter>(this, getSelectedArrayPath(), cDims);
