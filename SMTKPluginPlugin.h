@@ -158,7 +158,7 @@ class SMTKPlugin_EXPORT SMTKPluginPlugin : public QObject, public ISIMPLibPlugin
     QList<QString>      m_Filters;
     bool                m_DidLoad;
 
-    SMTKPluginPlugin(const SMTKPluginPlugin&); // Copy Constructor Not Implemented
-    void operator=(const SMTKPluginPlugin&);   // Move assignment Not Implemented
+    SMTKPluginPlugin(const SMTKPluginPlugin&) = delete; // Copy Constructor Not Implemented
+    void operator=(const SMTKPluginPlugin&) = delete;   // Move assignment Not Implemented
 };
 

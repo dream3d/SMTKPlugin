@@ -114,8 +114,8 @@ protected:
   SIMPLVtkBridge();
 
 private:
-  SIMPLVtkBridge(const SIMPLVtkBridge&); // Copy Constructor Not Implemented
-  void operator=(const SIMPLVtkBridge&); // Move assignment Not Implemented
+  SIMPLVtkBridge(const SIMPLVtkBridge&) = delete; // Copy Constructor Not Implemented
+  void operator=(const SIMPLVtkBridge&) = delete; // Move assignment Not Implemented
 };
 
 #ifdef __clang__
