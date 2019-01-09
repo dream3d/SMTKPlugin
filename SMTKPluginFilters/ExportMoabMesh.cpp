@@ -233,7 +233,6 @@ void ExportMoabMesh::execute()
     return;
   }
 
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
