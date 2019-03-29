@@ -179,7 +179,7 @@ void ExportMoabMesh::execute()
     QString ss;
     ss = QObject::tr("Error creating parent path '%1'").arg(dir.path());
     setErrorCondition(-101002);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
@@ -192,7 +192,7 @@ void ExportMoabMesh::execute()
   {
     QString ss = QObject::tr("Could not encapsulate the selected data array inside a VTK dataset.");
     setErrorCondition(-20002);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
@@ -207,7 +207,7 @@ void ExportMoabMesh::execute()
   {
     QString ss = QObject::tr("Unable to import the selected data array into an SMTK collection.");
     setErrorCondition(-101003);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
@@ -229,7 +229,7 @@ void ExportMoabMesh::execute()
   {
     QString ss = QObject::tr("Unable to write MOAB mesh to the specified file.");
     setErrorCondition(-101004);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 
