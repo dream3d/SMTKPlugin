@@ -125,7 +125,7 @@ class ExportMoabMeshTest
 
       pipeline->preflightPipeline();
       DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), -80000);
-      filter->clearErrorCondition();
+      filter->clearErrorCode();
 
       var.setValue(DataArrayPath(DataContainerName, AttributeMatrixName, DataArrayName));
       propWasSet = filter->setProperty("SelectedArrayPath", var);
@@ -133,14 +133,14 @@ class ExportMoabMeshTest
 
       pipeline->preflightPipeline();
       DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), 0);
-      filter->clearErrorCondition();
+      filter->clearErrorCode();
 
       propWasSet = filter->setProperty("OutputFile", "Foo.ftr");
       DREAM3D_REQUIRE_EQUAL(propWasSet, true);
 
       pipeline->preflightPipeline();
       DREAM3D_REQUIRE_EQUAL(filter->getErrorCondition(), 0);
-      filter->clearErrorCondition();
+      filter->clearErrorCode();
 
       var.setValue(UnitTest::ExportMoabMeshTest::VTKOutputFile);
       propWasSet = filter->setProperty("OutputFile", var);

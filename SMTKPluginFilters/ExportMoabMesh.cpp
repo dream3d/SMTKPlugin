@@ -86,8 +86,8 @@ ExportMoabMesh::~ExportMoabMesh() = default;
 // -----------------------------------------------------------------------------
 void ExportMoabMesh::initialize()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   setCancel(false);
 
   m_AllowedExtensions.push_back("h5m");
@@ -121,8 +121,8 @@ void ExportMoabMesh::setupFilterParameters()
 // -----------------------------------------------------------------------------
 void ExportMoabMesh::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   QFileInfo fi(getOutputFile());
   if(fi.suffix().compare("") == 0)
