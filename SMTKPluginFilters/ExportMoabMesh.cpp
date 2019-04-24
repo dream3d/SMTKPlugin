@@ -237,7 +237,7 @@ void ExportMoabMesh::execute()
 AbstractFilter::Pointer ExportMoabMesh::newFilterInstance(bool copyFilterParameters) const
 {
   ExportMoabMesh::Pointer filter = ExportMoabMesh::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }
