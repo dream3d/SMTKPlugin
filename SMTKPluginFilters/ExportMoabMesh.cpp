@@ -247,7 +247,7 @@ AbstractFilter::Pointer ExportMoabMesh::newFilterInstance(bool copyFilterParamet
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getCompiledLibraryName() const
+QString ExportMoabMesh::getCompiledLibraryName() const
 {
   return SMTKPluginConstants::SMTKPluginBaseName;
 }
@@ -255,7 +255,7 @@ const QString ExportMoabMesh::getCompiledLibraryName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getBrandingString() const
+QString ExportMoabMesh::getBrandingString() const
 {
   return "SMTKPlugin";
 }
@@ -263,7 +263,7 @@ const QString ExportMoabMesh::getBrandingString() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getFilterVersion() const
+QString ExportMoabMesh::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -274,7 +274,7 @@ const QString ExportMoabMesh::getFilterVersion() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getGroupName() const
+QString ExportMoabMesh::getGroupName() const
 {
   return SIMPL::FilterGroups::IOFilters;
 }
@@ -282,7 +282,7 @@ const QString ExportMoabMesh::getGroupName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QUuid ExportMoabMesh::getUuid()
+QUuid ExportMoabMesh::getUuid() const
 {
   return QUuid("{724fcea9-b0cf-5077-828a-f3cbc297e49e}");
 }
@@ -290,7 +290,7 @@ const QUuid ExportMoabMesh::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getSubGroupName() const
+QString ExportMoabMesh::getSubGroupName() const
 {
   return "SMTKPlugin";
 }
@@ -298,7 +298,7 @@ const QString ExportMoabMesh::getSubGroupName() const
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString ExportMoabMesh::getHumanLabel() const
+QString ExportMoabMesh::getHumanLabel() const
 {
   return "Export MOAB Mesh";
 }
