@@ -30,9 +30,10 @@
 
 #pragma once
 
-#include "SIMPLib/SIMPLib.h"
+#include <memory>
+
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
+#include "SIMPLib/DataArrays/DataArray.hpp"
 
 #include "SMTKPlugin/SMTKPluginDLLExport.h"
 
@@ -42,21 +43,60 @@
 class SMTKPlugin_EXPORT ExportMoabMesh : public AbstractFilter
 {
   Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
   PYB11_CREATE_BINDINGS(ExportMoabMesh SUPERCLASS AbstractFilter)
+  PYB11_SHARED_POINTERS(ExportMoabMesh)
+  PYB11_FILTER_NEW_MACRO(ExportMoabMesh)
+  PYB11_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
+  PYB11_FILTER_PARAMETER(QString, OutputFile)
   PYB11_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
   PYB11_PROPERTY(QString OutputFile READ getOutputFile WRITE setOutputFile)
+#endif
 
 public:
-  SIMPL_SHARED_POINTERS(ExportMoabMesh)
-  SIMPL_FILTER_NEW_MACRO(ExportMoabMesh)
-  SIMPL_TYPE_MACRO_SUPER_OVERRIDE(ExportMoabMesh, AbstractFilter)
+  using Self = ExportMoabMesh;
+  using Pointer = std::shared_ptr<Self>;
+  using ConstPointer = std::shared_ptr<const Self>;
+  using WeakPointer = std::weak_ptr<Self>;
+  using ConstWeakPointer = std::weak_ptr<Self>;
+  static Pointer NullPointer();
+
+  static std::shared_ptr<ExportMoabMesh> New();
+
+  /**
+   * @brief Returns the name of the class for ExportMoabMesh
+   */
+  const QString getNameOfClass() const override;
+  /**
+   * @brief Returns the name of the class for ExportMoabMesh
+   */
+  static QString ClassName();
 
   ~ExportMoabMesh() override;
 
-  SIMPL_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
+  /**
+   * @brief Setter property for SelectedArrayPath
+   */
+  void setSelectedArrayPath(const DataArrayPath& value);
+  /**
+   * @brief Getter property for SelectedArrayPath
+   * @return Value of SelectedArrayPath
+   */
+  DataArrayPath getSelectedArrayPath() const;
+
   Q_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
 
-  SIMPL_FILTER_PARAMETER(QString, OutputFile)
+  /**
+   * @brief Setter property for OutputFile
+   */
+  void setOutputFile(const QString& value);
+  /**
+   * @brief Getter property for OutputFile
+   * @return Value of OutputFile
+   */
+  QString getOutputFile() const;
+
   Q_PROPERTY(QString OutputFile READ getOutputFile WRITE setOutputFile)
 
   /**
@@ -156,7 +196,11 @@ protected:
   void initialize();
 
 private:
-  DEFINE_DATAARRAY_VARIABLE(double, SelectedArray)
+  std::weak_ptr<DataArray<double>> m_SelectedArrayPtr;
+  double* m_SelectedArray = nullptr;
+
+  DataArrayPath m_SelectedArrayPath = {};
+  QString m_OutputFile = {};
 
   QStringList m_AllowedExtensions;
   QString m_ExtensionsString;

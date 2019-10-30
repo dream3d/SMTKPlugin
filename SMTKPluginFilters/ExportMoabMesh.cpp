@@ -28,15 +28,22 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "ExportMoabMesh.h"
 
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 
+#include <QtCore/QTextStream>
+
 #include "SIMPLib/Common/Constants.h"
+
 #include "SIMPLib/FilterParameters/DataArraySelectionFilterParameter.h"
 #include "SIMPLib/FilterParameters/OutputFileFilterParameter.h"
 #include "SIMPLib/Utilities/FileSystemPathHelper.h"
+#include "SIMPLib/DataContainers/DataContainerArray.h"
+#include "SIMPLib/DataContainers/DataContainer.h"
 
 #include "smtk/extension/vtk/io/mesh/ExportVTKData.h"
 #include "smtk/extension/vtk/io/mesh/ImportVTKData.h"
@@ -301,4 +308,57 @@ QString ExportMoabMesh::getSubGroupName() const
 QString ExportMoabMesh::getHumanLabel() const
 {
   return "Export MOAB Mesh";
+}
+
+// -----------------------------------------------------------------------------
+ExportMoabMesh::Pointer ExportMoabMesh::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<ExportMoabMesh> ExportMoabMesh::New()
+{
+  struct make_shared_enabler : public ExportMoabMesh
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+const QString ExportMoabMesh::getNameOfClass() const
+{
+  return QString("ExportMoabMesh");
+}
+
+// -----------------------------------------------------------------------------
+QString ExportMoabMesh::ClassName()
+{
+  return QString("ExportMoabMesh");
+}
+
+// -----------------------------------------------------------------------------
+void ExportMoabMesh::setSelectedArrayPath(const DataArrayPath& value)
+{
+  m_SelectedArrayPath = value;
+}
+
+// -----------------------------------------------------------------------------
+DataArrayPath ExportMoabMesh::getSelectedArrayPath() const
+{
+  return m_SelectedArrayPath;
+}
+
+// -----------------------------------------------------------------------------
+void ExportMoabMesh::setOutputFile(const QString& value)
+{
+  m_OutputFile = value;
+}
+
+// -----------------------------------------------------------------------------
+QString ExportMoabMesh::getOutputFile() const
+{
+  return m_OutputFile;
 }
