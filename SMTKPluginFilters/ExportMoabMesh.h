@@ -44,15 +44,14 @@ class SMTKPlugin_EXPORT ExportMoabMesh : public AbstractFilter
 {
   Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-  PYB11_CREATE_BINDINGS(ExportMoabMesh SUPERCLASS AbstractFilter)
+  // Start Python bindings declarations
+  PYB11_BEGIN_BINDINGS(ExportMoabMesh SUPERCLASS AbstractFilter)
   PYB11_SHARED_POINTERS(ExportMoabMesh)
   PYB11_FILTER_NEW_MACRO(ExportMoabMesh)
-  PYB11_FILTER_PARAMETER(DataArrayPath, SelectedArrayPath)
-  PYB11_FILTER_PARAMETER(QString, OutputFile)
   PYB11_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
   PYB11_PROPERTY(QString OutputFile READ getOutputFile WRITE setOutputFile)
-#endif
+  PYB11_END_BINDINGS()
+  // End Python bindings declarations
 
 public:
   using Self = ExportMoabMesh;
