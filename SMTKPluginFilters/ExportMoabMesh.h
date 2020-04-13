@@ -83,7 +83,6 @@ public:
    * @return Value of SelectedArrayPath
    */
   DataArrayPath getSelectedArrayPath() const;
-
   Q_PROPERTY(DataArrayPath SelectedArrayPath READ getSelectedArrayPath WRITE setSelectedArrayPath)
 
   /**
@@ -95,7 +94,6 @@ public:
    * @return Value of OutputFile
    */
   QString getOutputFile() const;
-
   Q_PROPERTY(QString OutputFile READ getOutputFile WRITE setOutputFile)
 
   /**
